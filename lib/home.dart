@@ -21,10 +21,10 @@ class HomePage extends StatelessWidget {
           SafeArea(
             child: Column(
               children: [
-                const SizedBox(height: 40),
+                const SizedBox(height: 60),
 
                 // Logo
-                Image.asset('assets/logo.png', width: 220),
+                Image.asset('assets/logo.png', width: 320),
 
                 const Spacer(),
 
@@ -60,7 +60,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 150),
+                const SizedBox(height: 200),
               ],
             ),
           ),

@@ -11,18 +11,18 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  
-
   OutlineInputBorder _inputBorder(Color color) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(16),
-
+      
       borderSide: BorderSide(color: color, width: 1.5),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: const Color(0xFFF2F3D9),
 
@@ -37,99 +37,125 @@ class _LoginPageState extends State<LoginPage> {
           ),
 
           SafeArea(
-            child: Column(
-              children: [
-                const SizedBox(height: 40),
-
-                // Logo
-                Image.asset('assets/logo.png', width: 220),
-
-                // Campos de Login
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: TextField(
-                      controller: emailController,
-                      decoration: InputDecoration(
-                        hintText: 'E-mail',
-                        hintStyle: TextStyle(color: Colors.grey.shade500),
-
-                        border: _inputBorder(const Color(0xFF0FA3B1)),
-                        focusedBorder: _inputBorder(const Color(0xFF0FA3B1)),
-
-                        filled: true,
-                        fillColor: Colors.white,
-
-                        prefixIcon: Icon(Icons.mail, color: Color(0xFF0FA3B1)),
-                      ),
-
-                      cursorColor: const Color(0xff0FA3B1),
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 16),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: TextField(
-                    controller: passwordController,
-                    obscureText: true,
-
-                    decoration: InputDecoration(
-                      hintText: 'Senha',
-                      hintStyle: TextStyle(color: Colors.grey.shade500),
-
-                      border: _inputBorder(const Color(0xFF0FA3B1)),
-                      focusedBorder: _inputBorder(const Color(0xFF0FA3B1)),
-
-                      filled: true,
-                      fillColor: Colors.white,
-
-                      prefixIcon: Icon(Icons.lock, color: Color(0xFF0FA3B1)),
-
-                      suffixIcon: Icon(
-                        Icons.remove_red_eye,
-                        color: Color(0xFF0FA3B1),
-                      ),
-                    ),
-
-                    cursorColor: const Color(0xFF0FA3B1),
-                  ),
-                ),
-
-                const SizedBox(height: 24),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 60),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        debugPrint('email: ${emailController.text}');
-                        debugPrint('password: ${passwordController.text}');
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF0FA3B1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
-                      child: const Text(
-                        'Login',
-                        style: TextStyle(
-                          color: Color(0xFFF2F3D9),
-                          fontSize: 20,
+              child: SingleChildScrollView(
+                padding: EdgeInsets.only(bottom: screenHeight * 0.1),
+                child: Column(
+                  children: [
+                    SizedBox(height: screenHeight * 0.08),
+                
+                    // Logo
+                    Image.asset('assets/logo.png', width: 320),
+                
+                    // Campo Email
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 70,
+                        child: TextField(
+                          controller: emailController,
+                          decoration: InputDecoration(
+                            hintText: 'E-mail',
+                            hintStyle: TextStyle(
+                              color: Colors.grey.shade500,
+                              fontSize: 16,
+                            ),
+                
+                            border: _inputBorder(const Color(0xFF0FA3B1)),
+                            focusedBorder: _inputBorder(const Color(0xFF0FA3B1)),
+                
+                            filled: true,
+                            fillColor: Colors.white,
+                
+                            prefixIcon: Icon(
+                              Icons.mail,
+                              color: Color(0xFF0FA3B1),
+                              size: 35,
+                            ),
+                          ),
+                
+                          cursorColor: const Color(0xff0FA3B1),
                         ),
                       ),
                     ),
-                  ),
+                
+                    SizedBox(height: screenHeight * 0.04),
+                
+                    // Campo Senha
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 70,
+                        child: TextField(
+                          controller: passwordController,
+                          obscureText: true,
+                
+                          decoration: InputDecoration(
+                            hintText: 'Senha',
+                            hintStyle: TextStyle(
+                              color: Colors.grey.shade500,
+                              fontSize: 16,
+                            ),
+                
+                            border: _inputBorder(const Color(0xFF0FA3B1)),
+                            focusedBorder: _inputBorder(const Color(0xFF0FA3B1)),
+                
+                            filled: true,
+                            fillColor: Colors.white,
+                
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: Color(0xFF0FA3B1),
+                              size: 35,
+                            ),
+                
+                            suffixIcon: Icon(
+                              Icons.remove_red_eye,
+                              color: Color(0xFF0FA3B1),
+                              size: 35,
+                            ),
+                          ),
+                
+                          cursorColor: const Color(0xFF0FA3B1),
+                        ),
+                      ),
+                    ),
+                
+                    SizedBox(height: screenHeight * 0.08),
+                
+                    // Botão Login
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 60),
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 50,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            debugPrint('email: ${emailController.text}');
+                            debugPrint('password: ${passwordController.text}');
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF0FA3B1),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          child: const Text(
+                            'Login',
+                            style: TextStyle(
+                              color: Color(0xFFF2F3D9),
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                
+                    SizedBox(height: screenHeight * 0.12),
+                  ],
                 ),
-              ],
-            ),
+              ),
           ),
         ],
       ),
